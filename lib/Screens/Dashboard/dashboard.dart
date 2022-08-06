@@ -1,4 +1,7 @@
+// ignore_for_file: unused_field, unused_local_variable, non_constant_identifier_names, avoid_print, unused_element
+
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:ts_app_development/DataLayer/Models/ApiResponse/ApiResponse.dart';
@@ -39,6 +42,56 @@ class _DashboardState extends State<Dashboard> {
   bool isSessionExpired = false;
   List<ChartData> pieChartData = [];
   List<ChartData> barChartData = [];
+
+  String? _timeString;
+  String? _timeStringtwo;
+  String? _timeStringthree;
+
+  // void _getTime() {
+  //   // final String formattedDateTime =
+  //   //     DateFormat.MMMMd('yyyy-MM-dd \n kk:mm:ss').format(DateTime.now()).toString();
+
+  //       DateFormat formatter =DateFormat('EEEE, d MMM, yyyy');
+  //       String date = formatter.format((attendanceHistoryData[9][attendanceHistoryData[9]['AttendanceDateTime']]));
+  //       var dateSplit = date.split(',');
+
+  //        print(attendanceHistoryData[0]['AttendanceDateTime']);
+
+  //   setState(() {
+  //     _timeString = date;
+  //     _timeStringtwo = dateSplit[0];
+  //     _timeStringthree = dateSplit[1];
+
+  //     print('Hello$date');
+
+  //   });
+  // }
+
+      void _getTime() {
+    // final String formattedDateTime =
+    //     DateFormat.MMMMd('yyyy-MM-dd \n kk:mm:ss').format(DateTime.now()).toString();
+
+        DateFormat formatter =DateFormat.MMMEd('en_US');
+        String date = formatter.format(DateTime.now()).toString();
+        var dateSplit = date.split(',');
+        
+    setState(() {
+      _timeString = dateSplit[0];
+      _timeStringtwo = dateSplit[1];
+      _timeStringthree = date;
+      
+
+      
+     
+    });
+  }
+  static String formatTimeOfDayone(String date) {
+    final now = DateTime.parse(date);
+    final dt = DateTime(
+        now.year, now.month, now.day, now.hour, now.minute, now.second);
+    final format = DateFormat.jms(); //"6:00 AM"
+    return format.format(dt);
+  }
 
   @override
   void initState() {
@@ -87,7 +140,9 @@ class _DashboardState extends State<Dashboard> {
               if (attendanceSummaryData[i]['AttendanceType'] ==
                   'Punctuality Summary') {
                 if (attendanceSummaryData[i]['Summary'] != '00:00' &&
-                    attendanceSummaryData[i]['Summary'] != '0' && attendanceSummaryData[i]['AttendanceStatus'] != 'Over Time') {
+                    attendanceSummaryData[i]['Summary'] != '0' &&
+                    attendanceSummaryData[i]['AttendanceStatus'] !=
+                        'Over Time') {
                   barChartData.add(ChartData(
                       attendanceSummaryData[i]['AttendanceStatus'],
                       double.parse(attendanceSummaryData[i]['Summary']),
@@ -127,13 +182,15 @@ class _DashboardState extends State<Dashboard> {
         await AttendanceService.getEmployeeAttendanceSummary({
       'fromDate': dateTime.dateTime.start.toString(),
       'toDate': dateTime.dateTime.end.toString(),
-      'EmployeeInformationId': userProvider.userData['EmployeeInformationId'].toString(),
+      'EmployeeInformationId':
+          userProvider.userData['EmployeeInformationId'].toString(),
     });
     attendanceHistoryDataFuture =
         await AttendanceService.getEmployeeAttendanceHistory({
       'fromDate': dateTime.dateTime.start.toString(),
       'toDate': dateTime.dateTime.end.toString(),
-      'EmployeeInformationId': userProvider.userData['EmployeeInformationId'].toString(),
+      'EmployeeInformationId':
+          userProvider.userData['EmployeeInformationId'].toString(),
     });
 
     return [
@@ -244,10 +301,19 @@ class _DashboardState extends State<Dashboard> {
                                   AppConst.appColorSeparator,
                               onPress: () {
                                 var filteredData = [];
+                                
                                 if (attendanceSummaryData[i]
                                         ['AttendanceStatus'] ==
                                     'Total') {
                                   filteredData = attendanceHistoryData;
+                                  print('Hello');
+                                  print(filteredData[i]);
+                                  print(filteredData[i]['AttendanceDate']);
+                                  print(filteredData[i]['WeekDay']);
+                                  print('Time is $_timeStringtwo');
+                                  print(DateTime.now());
+                                
+                              
                                 } else {
                                   filteredData =
                                       attendanceHistoryData.where((element) {
@@ -280,7 +346,10 @@ class _DashboardState extends State<Dashboard> {
                                                     i++)
                                                   Slice(
                                                     height: 120.0,
-                                                    statusColor: AppConst.statusColors[filteredData[i]['Status']],
+                                                    statusColor:
+                                                        AppConst.statusColors[
+                                                            filteredData[i]
+                                                                ['Status']],
                                                     leftAreaContent: Column(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
@@ -293,11 +362,12 @@ class _DashboardState extends State<Dashboard> {
                                                             color: AppConst
                                                                 .appColorWhite,
                                                             fontSize: AppConst
-                                                                .appFontSizeh8,
+                                                                .appFontSizeh9,
                                                             fontWeight: AppConst
                                                                 .appTextFontWeightBold,
                                                           ),
                                                         ),
+                                                        SizedBox(height: 9,),
                                                         Text(
                                                           AppConst
                                                               .months[DateTime.parse(
@@ -312,7 +382,20 @@ class _DashboardState extends State<Dashboard> {
                                                             color: AppConst
                                                                 .appColorWhite,
                                                             fontSize: AppConst
-                                                                .appFontSizeh9,
+                                                                .appFontSizeh10,
+                                                            fontWeight: AppConst
+                                                                .appTextFontWeightMedium,
+                                                          ),
+                                                        ),
+                                                        SizedBox(height: 10,),
+                                                        Text(
+                                                          filteredData[i]['WeekDay'],
+                                                          style:
+                                                              const TextStyle(
+                                                            color: AppConst
+                                                                .appColorWhite,
+                                                            fontSize: AppConst
+                                                                .appFontSizeh10,
                                                             fontWeight: AppConst
                                                                 .appTextFontWeightMedium,
                                                           ),
@@ -566,11 +649,15 @@ class _DashboardState extends State<Dashboard> {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 for (int inner = 0;
-                                                inner < filteredData.length;
-                                                inner++)
+                                                    inner < filteredData.length;
+                                                    inner++)
                                                   Slice(
                                                     height: 120.0,
-                                                    statusColor: AppConst.statusColors[attendanceSummaryData[i]['AttendanceStatus']],
+                                                    statusColor: AppConst
+                                                            .statusColors[
+                                                        attendanceSummaryData[i]
+                                                            [
+                                                            'AttendanceStatus']],
                                                     leftAreaContent: Column(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
@@ -592,7 +679,7 @@ class _DashboardState extends State<Dashboard> {
                                                           AppConst
                                                               .months[DateTime.parse(
                                                                       filteredData[
-                                                                      inner]
+                                                                              inner]
                                                                           [
                                                                           'AttendanceDateTime'])
                                                                   .month -
@@ -631,12 +718,13 @@ class _DashboardState extends State<Dashboard> {
                                                               ),
                                                             ),
                                                             Text(
-                                                              filteredData[inner][
+                                                              filteredData[inner]
+                                                                          [
                                                                           'DateTimeIN'] !=
                                                                       null
                                                                   ? Functions.formatTimeOfDay(
                                                                       filteredData[
-                                                                      inner]
+                                                                              inner]
                                                                           [
                                                                           'DateTimeIN'])
                                                                   : '-- : --',
@@ -669,12 +757,13 @@ class _DashboardState extends State<Dashboard> {
                                                               ),
                                                             ),
                                                             Text(
-                                                              filteredData[inner][
+                                                              filteredData[inner]
+                                                                          [
                                                                           'DateTimeOut'] !=
                                                                       null
                                                                   ? Functions.formatTimeOfDay(
                                                                       filteredData[
-                                                                      inner]
+                                                                              inner]
                                                                           [
                                                                           'DateTimeOut'])
                                                                   : '-- : --',
@@ -853,7 +942,9 @@ class _DashboardState extends State<Dashboard> {
               SizedBox(
                 width: 60,
                 height: 60,
-                child: CircularProgressIndicator(color: context.read<ThemeProvider>().selectedPrimaryColor,),
+                child: CircularProgressIndicator(
+                  color: context.read<ThemeProvider>().selectedPrimaryColor,
+                ),
               ),
             ],
           ),

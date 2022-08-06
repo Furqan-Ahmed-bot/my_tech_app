@@ -1,7 +1,7 @@
 # compiler: R8
 # compiler_version: 3.1.66
 # min_api: 21
-# pg_map_id: 8c20c7d
+# pg_map_id: ee5a188
 # common_typos_disable
 # {"id":"com.android.tools.r8.mapping","version":"1.0"}
 android.support.v4.app.INotificationSideChannel -> a.a:
@@ -13093,7 +13093,8 @@ io.flutter.embedding.engine.plugins.service.ServicePluginBinding -> a2.b:
 io.flutter.embedding.engine.plugins.util.GeneratedPluginRegister -> b2.a:
     void registerGeneratedPlugins(io.flutter.embedding.engine.FlutterEngine) -> a
 io.flutter.embedding.engine.renderer.FlutterRenderer -> c2.a:
-    io.flutter.embedding.engine.renderer.FlutterUiDisplayListener flutterUiDisplayListener -> j
+    io.flutter.embedding.engine.renderer.FlutterUiDisplayListener flutterUiDisplayListener -> k
+    java.util.Set onTrimMemoryListeners -> j
     android.view.Surface surface -> g
     boolean isDisplayingFlutterUi -> h
     io.flutter.embedding.engine.FlutterJNI flutterJNI -> e
@@ -13105,19 +13106,22 @@ io.flutter.embedding.engine.renderer.FlutterRenderer -> c2.a:
     void access$500(io.flutter.embedding.engine.renderer.FlutterRenderer,long) -> d
     android.os.Handler access$700(io.flutter.embedding.engine.renderer.FlutterRenderer) -> e
     void addIsDisplayingFlutterUiListener(io.flutter.embedding.engine.renderer.FlutterUiDisplayListener) -> f
-    void dispatchPointerDataPacket(java.nio.ByteBuffer,int) -> g
-    boolean isDisplayingFlutterUi() -> h
-    boolean isSoftwareRenderingEnabled() -> i
-    void markTextureFrameAvailable(long) -> j
-    io.flutter.view.TextureRegistry$SurfaceTextureEntry registerSurfaceTexture(android.graphics.SurfaceTexture) -> k
-    void registerTexture(long,io.flutter.embedding.engine.renderer.SurfaceTextureWrapper) -> l
-    void removeIsDisplayingFlutterUiListener(io.flutter.embedding.engine.renderer.FlutterUiDisplayListener) -> m
-    void setSemanticsEnabled(boolean) -> n
-    void setViewportMetrics(io.flutter.embedding.engine.renderer.FlutterRenderer$ViewportMetrics) -> o
-    void startRenderingToSurface(android.view.Surface,boolean) -> p
-    void stopRenderingToSurface() -> q
-    void surfaceChanged(int,int) -> r
-    void swapSurface(android.view.Surface) -> s
+    void addOnTrimMemoryListener(io.flutter.view.TextureRegistry$OnTrimMemoryListener) -> g
+    void clearDeadListeners() -> h
+    void dispatchPointerDataPacket(java.nio.ByteBuffer,int) -> i
+    boolean isDisplayingFlutterUi() -> j
+    boolean isSoftwareRenderingEnabled() -> k
+    void markTextureFrameAvailable(long) -> l
+    void onTrimMemory(int) -> m
+    io.flutter.view.TextureRegistry$SurfaceTextureEntry registerSurfaceTexture(android.graphics.SurfaceTexture) -> n
+    void registerTexture(long,io.flutter.embedding.engine.renderer.SurfaceTextureWrapper) -> o
+    void removeIsDisplayingFlutterUiListener(io.flutter.embedding.engine.renderer.FlutterUiDisplayListener) -> p
+    void setSemanticsEnabled(boolean) -> q
+    void setViewportMetrics(io.flutter.embedding.engine.renderer.FlutterRenderer$ViewportMetrics) -> r
+    void startRenderingToSurface(android.view.Surface,boolean) -> s
+    void stopRenderingToSurface() -> t
+    void surfaceChanged(int,int) -> u
+    void swapSurface(android.view.Surface) -> v
 io.flutter.embedding.engine.renderer.FlutterRenderer$1 -> c2.a$a:
     io.flutter.embedding.engine.renderer.FlutterRenderer this$0 -> a
     void onFlutterUiNoLongerDisplayed() -> c
@@ -13143,20 +13147,22 @@ io.flutter.embedding.engine.renderer.FlutterRenderer$SurfaceTextureFinalizerRunn
     long id -> e
     io.flutter.embedding.engine.FlutterJNI flutterJNI -> f
 io.flutter.embedding.engine.renderer.FlutterRenderer$SurfaceTextureRegistryEntry -> c2.a$f:
-    java.lang.Runnable onFrameConsumed -> e
-    io.flutter.embedding.engine.renderer.FlutterRenderer this$0 -> g
-    io.flutter.view.TextureRegistry$OnFrameConsumedListener listener -> d
+    io.flutter.view.TextureRegistry$OnFrameConsumedListener frameConsumedListener -> e
     io.flutter.embedding.engine.renderer.SurfaceTextureWrapper textureWrapper -> b
+    java.lang.Runnable onFrameConsumed -> f
     long id -> a
+    io.flutter.view.TextureRegistry$OnTrimMemoryListener trimMemoryListener -> d
     boolean released -> c
-    android.graphics.SurfaceTexture$OnFrameAvailableListener onFrameListener -> f
+    android.graphics.SurfaceTexture$OnFrameAvailableListener onFrameListener -> g
+    io.flutter.embedding.engine.renderer.FlutterRenderer this$0 -> h
     long id() -> a
-    void setOnFrameConsumedListener(io.flutter.view.TextureRegistry$OnFrameConsumedListener) -> b
-    android.graphics.SurfaceTexture surfaceTexture() -> c
-    io.flutter.view.TextureRegistry$OnFrameConsumedListener access$100(io.flutter.embedding.engine.renderer.FlutterRenderer$SurfaceTextureRegistryEntry) -> d
-    boolean access$200(io.flutter.embedding.engine.renderer.FlutterRenderer$SurfaceTextureRegistryEntry) -> e
-    long access$400(io.flutter.embedding.engine.renderer.FlutterRenderer$SurfaceTextureRegistryEntry) -> f
-    io.flutter.embedding.engine.renderer.SurfaceTextureWrapper textureWrapper() -> g
+    void setOnTrimMemoryListener(io.flutter.view.TextureRegistry$OnTrimMemoryListener) -> b
+    void setOnFrameConsumedListener(io.flutter.view.TextureRegistry$OnFrameConsumedListener) -> c
+    android.graphics.SurfaceTexture surfaceTexture() -> d
+    io.flutter.view.TextureRegistry$OnFrameConsumedListener access$100(io.flutter.embedding.engine.renderer.FlutterRenderer$SurfaceTextureRegistryEntry) -> e
+    boolean access$200(io.flutter.embedding.engine.renderer.FlutterRenderer$SurfaceTextureRegistryEntry) -> f
+    long access$400(io.flutter.embedding.engine.renderer.FlutterRenderer$SurfaceTextureRegistryEntry) -> g
+    io.flutter.embedding.engine.renderer.SurfaceTextureWrapper textureWrapper() -> h
 io.flutter.embedding.engine.renderer.FlutterRenderer$SurfaceTextureRegistryEntry$1 -> c2.a$f$a:
     io.flutter.embedding.engine.renderer.FlutterRenderer$SurfaceTextureRegistryEntry this$1 -> e
 io.flutter.embedding.engine.renderer.FlutterRenderer$SurfaceTextureRegistryEntry$2 -> c2.a$f$b:
@@ -14010,35 +14016,41 @@ io.flutter.plugin.platform.PlatformViewRegistryImpl -> h2.g:
     boolean registerViewFactory(java.lang.String,io.flutter.plugin.platform.PlatformViewFactory) -> a
     io.flutter.plugin.platform.PlatformViewFactory getFactory(java.lang.String) -> b
 io.flutter.plugin.platform.PlatformViewWrapper -> h2.h:
-    android.view.Surface surface -> l
-    io.flutter.view.TextureRegistry$OnFrameConsumedListener listener -> p
-    io.flutter.embedding.android.AndroidTouchProcessor touchProcessor -> m
+    io.flutter.view.TextureRegistry$OnFrameConsumedListener frameConsumedListener -> p
     int bufferHeight -> j
-    android.graphics.SurfaceTexture tx -> k
     int top -> h
     java.util.concurrent.atomic.AtomicLong pendingFramesCount -> o
     int bufferWidth -> i
     int prevTop -> f
     android.view.ViewTreeObserver$OnGlobalFocusChangeListener activeFocusListener -> n
     int left -> g
+    io.flutter.view.TextureRegistry$OnTrimMemoryListener trimMemoryListener -> r
     int prevLeft -> e
+    boolean shouldRecreateSurfaceForLowMemory -> q
+    android.view.Surface surface -> l
+    io.flutter.embedding.android.AndroidTouchProcessor touchProcessor -> m
+    android.graphics.SurfaceTexture tx -> k
     java.util.concurrent.atomic.AtomicLong access$000(io.flutter.plugin.platform.PlatformViewWrapper) -> a
-    android.view.Surface createSurface(android.graphics.SurfaceTexture) -> b
-    int getBufferHeight() -> c
-    int getBufferWidth() -> d
-    void onFrameProduced() -> e
-    void release() -> f
-    void setBufferSize(int,int) -> g
-    void setLayoutParams(android.widget.FrameLayout$LayoutParams) -> h
-    void setOnDescendantFocusChangeListener(android.view.View$OnFocusChangeListener) -> i
-    void setTexture(android.graphics.SurfaceTexture) -> j
-    void setTouchProcessor(io.flutter.embedding.android.AndroidTouchProcessor) -> k
-    boolean shouldDrawToSurfaceNow() -> l
-    void unsetOnDescendantFocusChangeListener() -> m
+    boolean access$102(io.flutter.plugin.platform.PlatformViewWrapper,boolean) -> b
+    android.view.Surface createSurface(android.graphics.SurfaceTexture) -> c
+    int getBufferHeight() -> d
+    int getBufferWidth() -> e
+    void onFrameProduced() -> f
+    void recreateSurfaceIfNeeded() -> g
+    void release() -> h
+    void setBufferSize(int,int) -> i
+    void setLayoutParams(android.widget.FrameLayout$LayoutParams) -> j
+    void setOnDescendantFocusChangeListener(android.view.View$OnFocusChangeListener) -> k
+    void setTexture(android.graphics.SurfaceTexture) -> l
+    void setTouchProcessor(io.flutter.embedding.android.AndroidTouchProcessor) -> m
+    boolean shouldDrawToSurfaceNow() -> n
+    void unsetOnDescendantFocusChangeListener() -> o
 io.flutter.plugin.platform.PlatformViewWrapper$1 -> h2.h$a:
     io.flutter.plugin.platform.PlatformViewWrapper this$0 -> a
     void onFrameConsumed() -> a
 io.flutter.plugin.platform.PlatformViewWrapper$2 -> h2.h$b:
+    io.flutter.plugin.platform.PlatformViewWrapper this$0 -> a
+io.flutter.plugin.platform.PlatformViewWrapper$3 -> h2.h$c:
     android.view.View$OnFocusChangeListener val$userFocusListener -> e
     io.flutter.plugin.platform.PlatformViewWrapper this$0 -> f
 io.flutter.plugin.platform.PlatformViewsAccessibilityDelegate -> h2.i:
@@ -15229,12 +15241,14 @@ io.flutter.view.FlutterView$SurfaceTextureRegistryEntry -> io.flutter.view.g$f:
     long id -> a
     boolean released -> c
     long id() -> a
-    void setOnFrameConsumedListener(io.flutter.view.TextureRegistry$OnFrameConsumedListener) -> b
+    void setOnTrimMemoryListener(io.flutter.view.TextureRegistry$OnTrimMemoryListener) -> b
       # {"id":"com.android.tools.r8.synthesized"}
-    android.graphics.SurfaceTexture surfaceTexture() -> c
-    boolean access$200(io.flutter.view.FlutterView$SurfaceTextureRegistryEntry) -> d
-    long access$300(io.flutter.view.FlutterView$SurfaceTextureRegistryEntry) -> e
-    io.flutter.embedding.engine.renderer.SurfaceTextureWrapper textureWrapper() -> f
+    void setOnFrameConsumedListener(io.flutter.view.TextureRegistry$OnFrameConsumedListener) -> c
+      # {"id":"com.android.tools.r8.synthesized"}
+    android.graphics.SurfaceTexture surfaceTexture() -> d
+    boolean access$200(io.flutter.view.FlutterView$SurfaceTextureRegistryEntry) -> e
+    long access$300(io.flutter.view.FlutterView$SurfaceTextureRegistryEntry) -> f
+    io.flutter.embedding.engine.renderer.SurfaceTextureWrapper textureWrapper() -> g
 io.flutter.view.FlutterView$SurfaceTextureRegistryEntry$1 -> io.flutter.view.g$f$a:
     io.flutter.view.FlutterView$SurfaceTextureRegistryEntry this$1 -> a
 io.flutter.view.FlutterView$ViewportMetrics -> io.flutter.view.g$g:
@@ -15264,14 +15278,18 @@ io.flutter.view.TextureRegistry -> io.flutter.view.h:
     io.flutter.view.TextureRegistry$SurfaceTextureEntry createSurfaceTexture() -> c
 io.flutter.view.TextureRegistry$OnFrameConsumedListener -> io.flutter.view.h$a:
     void onFrameConsumed() -> a
-io.flutter.view.TextureRegistry$SurfaceTextureEntry -> io.flutter.view.h$b:
+io.flutter.view.TextureRegistry$OnTrimMemoryListener -> io.flutter.view.h$b:
+io.flutter.view.TextureRegistry$SurfaceTextureEntry -> io.flutter.view.h$c:
     long id() -> a
-    void setOnFrameConsumedListener(io.flutter.view.TextureRegistry$OnFrameConsumedListener) -> b
-    android.graphics.SurfaceTexture surfaceTexture() -> c
+    void setOnTrimMemoryListener(io.flutter.view.TextureRegistry$OnTrimMemoryListener) -> b
+    void setOnFrameConsumedListener(io.flutter.view.TextureRegistry$OnFrameConsumedListener) -> c
+    android.graphics.SurfaceTexture surfaceTexture() -> d
 io.flutter.view.TextureRegistry$SurfaceTextureEntry$-CC -> io.flutter.view.i:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     void $default$setOnFrameConsumedListener(io.flutter.view.TextureRegistry$SurfaceTextureEntry,io.flutter.view.TextureRegistry$OnFrameConsumedListener) -> a
+      # {"id":"com.android.tools.r8.synthesized"}
+    void $default$setOnTrimMemoryListener(io.flutter.view.TextureRegistry$SurfaceTextureEntry,io.flutter.view.TextureRegistry$OnTrimMemoryListener) -> b
       # {"id":"com.android.tools.r8.synthesized"}
 io.flutter.view.VsyncWaiter -> io.flutter.view.j:
     io.flutter.embedding.engine.FlutterJNI flutterJNI -> b

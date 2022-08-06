@@ -15,7 +15,7 @@ class ApiConstant {
     },
     'restaurant_demo': {
       'scheme' : 'http',
-      'baseURLLocal': 'http://10.1.1.12:8081/',
+      'baseURLLocal': 'http://10.1.1.13:8081/',
       'baseHost': '10.1.1.13',
       'baseHostPort': 8081,
     },
