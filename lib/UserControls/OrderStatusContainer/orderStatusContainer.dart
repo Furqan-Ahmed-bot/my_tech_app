@@ -42,34 +42,7 @@ class OrderStatusContainer extends StatefulWidget {
 }
 
 class _OrderStatusContainerState extends State<OrderStatusContainer> {
-  String? _timeString;
-  String? _timeStringtwo;
-  String? _timeStringthree;
-  @override
-  void initState() {
-    // ignore: todo
-    // TODO: implement initState
-    super.initState();
-    
-  }
-  void _getTime() {
-    // final String formattedDateTime =
-    //     DateFormat.MMMMd('yyyy-MM-dd \n kk:mm:ss').format(DateTime.now()).toString();
-
-        DateFormat formatter =DateFormat.MMMEd('en_US');
-        String date = formatter.format(widget.dateText as DateTime);
-        var dateSplit = date.split(',');
-        print(date);
-    setState(() {
-      _timeString = dateSplit[0];
-      _timeStringtwo = dateSplit[1];
-      _timeStringthree = date;
-      
-
-      
-     
-    });
-  }
+  
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -155,10 +128,7 @@ class _OrderStatusContainerState extends State<OrderStatusContainer> {
                           
                           
                         ),
-                        Padding(padding: EdgeInsets.all(8),
                        
-                        
-                        ),
                         Expanded(
                           child: Align(
                             alignment: Alignment.bottomCenter,
